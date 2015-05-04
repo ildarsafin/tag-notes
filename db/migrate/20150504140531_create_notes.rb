@@ -4,7 +4,5 @@ class CreateNotes < ActiveRecord::Migration
       t.string :content, null: false
       t.timestamps null: false
     end
-
-    add_index :notes, :content, unique: true
   end
 end

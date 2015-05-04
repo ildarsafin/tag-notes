@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  template: template0
+  encoding: unicode
+  username: ildarsafin
+  password:
+  pool: 5
+
+development:
+  <<: *default
+  database: tag-notes_development
+
+test:
+  <<: *default
+  database: tag-notes_test
+
+production:
+  <<: *default
+  database: tag-notes_production
+  username: tag-notes
+  password: <%= ENV['SPA-WITH-RAILS_DATABASE_PASSWORD'] %>

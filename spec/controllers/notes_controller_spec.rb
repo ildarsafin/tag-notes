@@ -1,12 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe NotesController, type: :controller do
-  let(:valid_attributes){
-    { content: 'This is Something' }
-  }
-  let(:invalid_attributes){
-    { content: '' }
-  }
+RSpec.describe Api::V1::NotesController, type: :controller do
+  let(:valid_attributes) do
+    attributes_for(
+      :note,
+        content: 'This is Something'
+    )
+  end
+
+  let(:invalid_attributes) do
+    attributes_for(
+      :note,
+        content: ''
+    )
+  end
+
   describe "GET index" do
     let!(:note) { create(:note) }
     it "assigns all notes" do
@@ -26,9 +34,8 @@ RSpec.describe NotesController, type: :controller do
   describe "POST create" do
     context "with valid params" do
       before do
-        post :create, {
+        post :create,
           note: valid_attributes
-        }
       end
 
       it "creates a new note" do
@@ -47,9 +54,8 @@ RSpec.describe NotesController, type: :controller do
 
     describe "with invalid params" do
       before do
-        post :create, {
+        post :create,
           note: invalid_attributes
-        }
       end
 
       it "responds with 422" do
@@ -61,15 +67,17 @@ RSpec.describe NotesController, type: :controller do
   describe "PUT update" do
     let!(:note) { create(:note) }
     describe "with valid params" do
-      let(:new_attributes){
-        { content: '#batman' }
-      }
+      let(:new_attributes) do
+        attributes_for(
+          :note,
+            content: 'Something'
+        )
+      end
 
       before do
-        put :update, {
+        put :update,
           id: note.to_param,
           note: new_attributes
-        }
       end
 
       it "updates the requested note" do
@@ -87,10 +95,9 @@ RSpec.describe NotesController, type: :controller do
 
     describe "with invalid params" do
       before do
-        put :update, {
+        put :update,
           id: note.to_param,
           note: invalid_attributes
-        }
       end
       it "assigns the note as @note" do
         expect(assigns(:note)).to eq(note)
@@ -105,9 +112,8 @@ RSpec.describe NotesController, type: :controller do
   describe "DELETE destroy" do
     let!(:note) { create(:note) }
     before do
-      delete :destroy, {
-        id: note.to_param,
-      }
+      delete :destroy,
+        id: note.to_param
     end
     it "destroys the requested note" do
       expect(Note.count).to eq(0)

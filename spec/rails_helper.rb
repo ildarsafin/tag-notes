@@ -5,15 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require "shoulda/matchers"
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
-
-module Features
-  # Extend this module in spec/support/features/*.rb
-  include Formulaic::Dsl
-end
+Dir[Rails.root.join("spec/support/**/*.rb"), Rails.root.join("spec/helpers/**/*.rb")].each { |file| require file }
 
 RSpec.configure do |config|
-  config.include Features, type: :feature
+  config.include Requests::JsonHelpers, type: :request
 
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!

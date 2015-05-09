@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.1'
 
 gem 'rails-api'
 
 gem 'pg'
+gem 'devise'
 
 group :development do
   gem "spring"
@@ -17,6 +17,7 @@ group :development, :test do
   gem "awesome_print"
   gem "bundler-audit", require: false
   gem "byebug"
+  gem "rspec_api_documentation"
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-rails"

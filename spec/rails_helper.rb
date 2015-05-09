@@ -8,7 +8,9 @@ require "shoulda/matchers"
 Dir[Rails.root.join("spec/support/**/*.rb"), Rails.root.join("spec/helpers/**/*.rb")].each { |file| require file }
 
 RSpec.configure do |config|
+  config.include Rails.application.routes.url_helpers
   config.include Requests::JsonHelpers, type: :request
+  config.include Devise::TestHelpers, type: :controller
 
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!

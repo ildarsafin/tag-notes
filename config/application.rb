@@ -9,5 +9,7 @@ Bundler.require(*Rails.groups)
 module TagNotes
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.host = 'localhost:3000'
   end
 end

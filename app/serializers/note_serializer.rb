@@ -1,5 +1,5 @@
 class NoteSerializer < ApplicationSerializer
-  attributes :id, :content, :tag_ids
+  attributes :id, :content
 
   has_many :tags, serializer: TagSerializer
 end
